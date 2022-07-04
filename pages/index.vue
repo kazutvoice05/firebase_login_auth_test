@@ -10,8 +10,8 @@ export default {
   name: 'IndexPage',
   methods: {
     async getFirebase() {
+      const query = await this.$fire.firestore.collection('data').get()
       try {
-        const query = await this.$fire.firestore.collection('data').get()
         const docs = []
         query.forEach((doc) => {
           var data = doc.data()

@@ -1,3 +1,7 @@
+require('dotenv').config({ debug: true })
+
+console.log(process.env)
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -43,8 +47,6 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/pwa',
     [
       '@nuxtjs/firebase',
       {
@@ -65,7 +67,8 @@ export default {
               onAuthStateChangedAction: 'onAuthStateChanged',
             },
             ssr: false
-          }
+          },
+          firestore: true
         }
       }
     ]
@@ -81,19 +84,6 @@ export default {
      // Firestore Settings - currently only works in SPA mode 
    } 
  }, 
-
-  pwa: {
-    meta: false,
-    icon: false,
-
-    workbox: {
-      importScripts: [
-        '/firebase-auth-sw.js'
-      ],
-
-      dev: true
-    }
-  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
