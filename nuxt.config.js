@@ -43,7 +43,57 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/pwa',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.apiKey,
+          authDomain: process.env.authDomain,
+          databaseURL: process.env.databaseURL,
+          projectId: process.env.projectId,
+          storageBucket: process.env.storageBucket,
+          messagingSenderId: process.env.messagingSenderId,
+          appId: process.env.appId,
+          measurementId: process.env.measurementId
+        },
+        services: {
+          auth: {
+            persistence: 'local',
+            initialize: {
+              onAuthStateChangedAction: 'onAuthStateChanged',
+            },
+            ssr: false
+          }
+        }
+      }
+    ]
   ],
+
+  firestore: { 
+   memoryOnly: false, // default 
+   chunkName: process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default 
+   enablePersistence: true, 
+   emulatorPort: 8080, 
+   emulatorHost: 'localhost', 
+   settings: { 
+     // Firestore Settings - currently only works in SPA mode 
+   } 
+ }, 
+
+  pwa: {
+    meta: false,
+    icon: false,
+
+    workbox: {
+      importScripts: [
+        '/firebase-auth-sw.js'
+      ],
+
+      dev: true
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
