@@ -1,6 +1,9 @@
 # firebase_login_auth_test
 Nuxt + Firebase での Google ログイン機能のテスト実装
 
+## 参考資料
+https://zenn.dev/watson_sei/articles/f4db7312494525
+
 ## Build Setup
 
 ```bash
