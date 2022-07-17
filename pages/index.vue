@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="flex flex-col">
     <Tutorial/>
-    <button @click="getFirebase">Access Firebase</button>
+    <button class="button" @click="getFirebase">Access Firebase</button>
   </div>
 </template>
 
@@ -27,3 +27,9 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss" scoped>
+.button {
+  @apply block bg-green-500
+}
+</style>
